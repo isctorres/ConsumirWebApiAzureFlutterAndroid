@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Text(materia.Profesor),
                     Text(materia.Cuatrimestre),
+                    Text(materia.Horario),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
