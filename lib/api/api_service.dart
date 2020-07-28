@@ -4,7 +4,8 @@ import 'package:consumir_web_api/models/materia.dart';
 class ApiService{
 
   //final String BASE_URL = "http://api.bengkelrobot.net:8001";
-  final String ENDPOINT  = "https://webapimateria20200624231657.azurewebsites.net/api/materias";
+  //final String ENDPOINT  = "https://webapimateria20200624231657.azurewebsites.net/api/materias";
+  final String ENDPOINT  = "https://studentapi20200625220726.azurewebsites.net/api/materias";
   Client httpClient = Client();
 
   Future<List<Materia>> getMaterias() async {

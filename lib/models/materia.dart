@@ -6,25 +6,27 @@ class Materia{
   String Profesor;
   String Cuatrimestre;
   String Horario;
+  int Calificacion;
 
-  Materia({this.Id,this.Nombre,this.Profesor,this.Cuatrimestre,this.Horario});
+  Materia({this.Id,this.Nombre,this.Profesor,this.Cuatrimestre,this.Horario,this.Calificacion});
   factory Materia.fromJson(Map<String,dynamic> map){
     return Materia(
       Id            : map['Id'],
       Nombre        : map['Nombre'] ?? '',
       Profesor      : map['Profesor'] ?? '',
       Cuatrimestre  : map['Cuatrimestre'] ?? '',
-      Horario       : map['Horario'] ?? ''
+      Horario       : map['Horario'] ?? '',
+      Calificacion  : map['Calificacion']
     );
   }
 
   Map<String,dynamic> toJson(){
-    return {"Id" : Id, "Nombre" : Nombre, "Profesor" : Profesor, "Cuatrimestre" : Cuatrimestre, "Horario" : Horario};
+    return {"Id" : Id, "Nombre" : Nombre, "Profesor" : Profesor, "Cuatrimestre" : Cuatrimestre, "Horario" : Horario, "Calificacion" : Calificacion};
   }
 
   @override
   String toString(){
-    return 'Materia {Id: $Id, Nombre: $Nombre, Profesor: $Profesor, Cuatrimestre: $Cuatrimestre, Horario: $Horario}';
+    return 'Materia {Id: $Id, Nombre: $Nombre, Profesor: $Profesor, Cuatrimestre: $Cuatrimestre, Horario: $Horario, Calificacion: $Calificacion}';
   }
 
   static List<Materia> materiaFromJson(String jsonData){

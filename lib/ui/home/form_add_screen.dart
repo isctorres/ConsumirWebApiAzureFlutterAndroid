@@ -20,11 +20,13 @@ class _FormAddScreenState extends State<FormAddScreen> {
   bool _isFieldProfesorValid;
   bool _isFieldCuatriValid;
   bool _isFieldHorarioValid;
+  bool _isFieldCalificacionValid;
 
   TextEditingController _controllerNombre   = TextEditingController();
   TextEditingController _controllerProfesor = TextEditingController();
   TextEditingController _controllerCuatri   = TextEditingController();
   TextEditingController _controllerHorario  = TextEditingController();
+  TextEditingController _controllerCalificacion  = TextEditingController();
 
   @override
   void initState() {
@@ -37,6 +39,8 @@ class _FormAddScreenState extends State<FormAddScreen> {
       _controllerCuatri.text = widget.materia.Cuatrimestre;
       _isFieldHorarioValid = true;
       _controllerHorario.text = widget.materia.Horario;
+      _isFieldCalificacionValid = true;
+      _controllerCalificacion.text = widget.materia.Calificacion.toString();
     }
     super.initState();
   }
@@ -63,6 +67,7 @@ class _FormAddScreenState extends State<FormAddScreen> {
                 _buildTextFieldProfesor(),
                 _buildTextFieldCuatri(),
                 _buildTextFieldHorario(),
+                _buildTextFieldCalificacion(),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: RaisedButton(
@@ -84,7 +89,8 @@ class _FormAddScreenState extends State<FormAddScreen> {
                       String profesor = _controllerProfesor.text.toString();
                       String cuatri   = _controllerCuatri.text.toString();
                       String horario  = _controllerHorario.text.toString();
-                      Materia materia = Materia(Id: 1,Nombre: nombre, Profesor: profesor, Cuatrimestre: cuatri, Horario: horario);
+                      int calificacion = int.parse(_controllerCalificacion.text);
+                      Materia materia = Materia(Id: 1,Nombre: nombre, Profesor: profesor, Cuatrimestre: cuatri, Horario: horario, Calificacion: calificacion);
                       if( widget.materia == null ){
                         _apiService.createMateria(materia).then((isSuccess) {
                           setState(()=> _isLoading = false);
@@ -206,6 +212,25 @@ class _FormAddScreenState extends State<FormAddScreen> {
         bool isFieldValid = value.trim().isNotEmpty;
         if (isFieldValid != _isFieldHorarioValid) {
           setState(() => _isFieldHorarioValid = isFieldValid);
+        }
+      },
+    );
+  }
+
+  Widget _buildTextFieldCalificacion(){
+    return TextField(
+      controller: _controllerCalificacion,
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        labelText: "Qualification",
+        errorText: _isFieldCalificacionValid == null || _isFieldCalificacionValid
+            ? null
+            : "The Qualification is required",
+      ),
+      onChanged: (value) {
+        bool isFieldValid = value.trim().isNotEmpty;
+        if (isFieldValid != _isFieldCalificacionValid) {
+          setState(() => _isFieldCalificacionValid = isFieldValid);
         }
       },
     );
